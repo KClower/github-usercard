@@ -4,6 +4,7 @@
     https://api.github.com/users/<your name>
 */
 
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -28,7 +29,18 @@
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
+const followersArray = [
+  "KClower",
+  "tetondan",
+  "dustinmyers",
+  "justsml",
+  "luishrd",
+  "bigknell",
+  "LohanGuedes",
+"ronniedroid",
+"OkelleyDevelopment",
+"AceMouty",
+];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -49,6 +61,87 @@ const followersArray = [];
       </div>
     </div>
 */
+function gitHubCard(obj){
+const card = document.createElement("div"),
+      cardImg = document.createElement("img"),
+      cardInfo = document.createElement("div"),
+      cardName = document.createElement("h3"),
+      cardUserName = document.createElement("p"),
+      cardLocation = document.createElement("p"),
+      cardProfile = document.createElement("p"),
+      cardWebAddress = document.createElement("a"),
+      cardFolowers = document.createElement("p"),
+      cardFollowing = document.createElement("p"),
+      cardBio = document.createElement("p")
+
+      card.classList.add("card");
+      cardInfo.classList.add("class-info");
+      cardName.classList.add("name");
+      cardUserName.classList.add("username");
+
+      cardImg.src = obj.avatar_url
+      cardName.textContent = obj.name
+      cardUserName.textContent = obj.login
+      cardLocation.textContent = obj.location
+      cardProfile.textContent = "Profile: "
+      cardWebAddress.textContent = obj.html_url
+      cardWebAddress.href = obj.html_url
+      cardFolowers.textContent = `Followers: ${obj.followers}`
+      cardFollowing.textContent = `Following: ${obj.following}`
+      cardBio.textContent = obj.bio
+
+      card.appendChild(cardImg);
+      card.appendChild(cardInfo);
+      cardProfile.appendChild(cardWebAddress);
+      cardInfo.appendChild(cardName);
+      cardInfo.appendChild(cardUserName);
+      cardInfo.appendChild(cardLocation);
+      cardInfo.appendChild(cardProfile); 
+      cardInfo.appendChild(cardFolowers);
+      cardInfo.appendChild(cardFollowing);
+      cardInfo.appendChild(cardBio);
+
+   return card
+}
+
+const entryPoint = document.querySelector(".cards")
+
+
+ //       MULTIPLE USERS (RANDOM ORDER)
+  followersArray.forEach(follower => {
+  axios.get(`https://api.github.com/users/${follower}`)
+  .then(response => {
+     entryPoint.append(gitHubCard(response.data));
+  }).catch(error => {
+    console.log("THIS DID NOT WORK", error)
+  })
+})
+
+//     MULTIPLE USERS ( IN ORDER AS ARRAY)
+
+// const requests = []
+
+// followersArray.forEach(follower => {
+//   const request = axios.get(`https://api.github.com/users/${follower}`)
+//   requests.push(request)
+// })
+// Promise.all(requests)
+// .then(responses => {
+ 
+//   responses.forEach(response => {
+//     entryPoint.append(gitHubCard(response.data))
+//   })
+// })
+
+//      SINGLE USER
+// axios.get("https://api.github.com/users/KClower")
+// .then(response => {
+//   console.log(response.data)
+//   entryPoint.append(gitHubCard(response.data));
+// })
+// .catch(error =>{
+//   console.log("the data was not returned", error)
+// });
 
 /*
   List of LS Instructors Github username's:
