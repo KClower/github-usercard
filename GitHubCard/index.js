@@ -4,6 +4,16 @@
     https://api.github.com/users/<your name>
 */
 
+//      SINGLE USER
+// axios.get("https://api.github.com/users/KClower")
+// .then(response => {
+//   console.log(response.data)
+//   entryPoint.append(gitHubCard(response.data));
+// })
+// .catch(error =>{
+//   console.log("the data was not returned", error)
+// });
+
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -37,9 +47,9 @@ const followersArray = [
   "luishrd",
   "bigknell",
   "LohanGuedes",
-"ronniedroid",
-"OkelleyDevelopment",
-"AceMouty",
+  "ronniedroid",
+  "OkelleyDevelopment",
+  "AceMouty",
 ];
 
 /*
@@ -133,15 +143,6 @@ const entryPoint = document.querySelector(".cards")
 //   })
 // })
 
-//      SINGLE USER
-// axios.get("https://api.github.com/users/KClower")
-// .then(response => {
-//   console.log(response.data)
-//   entryPoint.append(gitHubCard(response.data));
-// })
-// .catch(error =>{
-//   console.log("the data was not returned", error)
-// });
 
 /*
   List of LS Instructors Github username's:
